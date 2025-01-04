@@ -3,6 +3,7 @@ import Main from "../pages/Main";
 import Home from "../pages/Home";
 import SignUp from "../pages/SignUp";
 import SignIn from "../pages/SignIn";
+import FriendList from "../components/FriendList";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -11,7 +12,12 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+        element: <FriendList />,
       },
+      // {
+      //   path: "/friend",
+      //   element: <FriendList />,
+      // },
     ],
   },
   {
