@@ -58,7 +58,7 @@ const MutualFriends = () => {
                     <p>{friend.username}</p>
                     <div className="card-actions justify-end">
                       <button className="btn btn-primary">Message</button>
-                      <button className="btn btn-primary">Unfriend</button>
+                      <button className="btn btn-primary">Add Friend</button>
                     </div>
                   </div>
                 </div>

@@ -16,10 +16,10 @@ const router = createBrowserRouter([
         // element: <FriendList />,
         element: <Mutual />,
       },
-      // {
-      //   path: "/friend",
-      //   element: <FriendList />,
-      // },
+      {
+        path: "/frientlist",
+        element: <FriendList />,
+      },
     ],
   },
   {
