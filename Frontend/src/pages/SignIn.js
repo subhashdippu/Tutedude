@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -79,6 +79,18 @@ const Login = () => {
               value="Sign In"
             />
           </div>
+          <Link to="/">
+            <div className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </div>
+          </Link>
+
+          <p className="text-center my-2">
+            Donot have an account?
+            <Link to="/signup" className="underline text-red ml-1">
+              Signup Now
+            </Link>
+          </p>
         </form>
       </div>
     </div>

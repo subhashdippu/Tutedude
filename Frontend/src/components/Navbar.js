@@ -5,8 +5,12 @@ function Navbar() {
   return (
     <div className="navbar px-11 bg-black ">
       <div className="navbar-start ">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+        <div className="dropdown bg-black">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost btn-circle bg-black"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -24,16 +28,16 @@ function Navbar() {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-slate-400 rounded-box z-[1] mt-3 w-20 p-4 shadow "
+            className="menu menu-sm dropdown-content bg-black rounded-box z-[1] mt-3 w-21 p-7 shadow "
           >
-            <Link to="/">
-              <a className="btn-ghost py-1">Home</a>
+            <Link to="/userdata">
+              <p className="btn-ghost text-xl">Setting</p>
             </Link>
             <Link to="/signup">
-              <a className="btn-ghost py-1">SignUp</a>
+              <a className="btn-ghost text-xl ">SignUp</a>
             </Link>
             <Link to="/signin">
-              <a className="btn-ghost py-1">SignIn</a>
+              <a className="btn-ghost text-xl ">SignIn</a>
             </Link>
           </ul>
         </div>
