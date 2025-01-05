@@ -61,8 +61,31 @@ const rejectRequest = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+const showAllFriends = async (req, res) => {
+  try {
+    const friends = await Friend.find({
+      $or: [
+        { requester: req.user.id, status: "accepted" },
+        { recipient: req.user.id, status: "accepted" },
+      ],
+    }).populate("requester recipient", "username");
+
+    const friendList = friends.map((friend) => {
+      if (friend.requester._id.toString() === req.user.id) {
+        return friend.recipient;
+      } else {
+        return friend.requester;
+      }
+    });
+
+    res.status(200).json(friendList);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 module.exports = {
   sendRequest,
   acceptRequest,
   rejectRequest,
+  showAllFriends,
 };
