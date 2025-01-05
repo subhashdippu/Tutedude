@@ -45,7 +45,24 @@ const acceptRequest = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+const rejectRequest = async (req, res) => {
+  try {
+    const { requestId } = req.body;
+    const friendRequest = await Friend.findById(requestId);
+
+    if (!friendRequest || friendRequest.recipient.toString() !== req.user.id) {
+      return res.status(404).json({ message: "Friend request not found" });
+    }
+
+    friendRequest.status = "rejected";
+    await friendRequest.save();
+    res.status(200).json({ message: "Friend request rejected" });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 module.exports = {
   sendRequest,
   acceptRequest,
+  rejectRequest,
 };
