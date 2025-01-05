@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import SignUp from "../pages/SignUp";
 import SignIn from "../pages/SignIn";
 import FriendList from "../components/FriendList";
+import Mutual from "../components/MutualFriend";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -12,7 +13,8 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        element: <FriendList />,
+        // element: <FriendList />,
+        element: <Mutual />,
       },
       // {
       //   path: "/friend",
