@@ -83,9 +83,49 @@ const showAllFriends = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+const getMutualFriends = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const userFriends = await Friend.find({
+      $or: [
+        { requester: userId, status: "accepted" },
+        { recipient: userId, status: "accepted" },
+      ],
+    });
+
+    const friendIds = userFriends.map((friend) =>
+      friend.requester.toString() === userId
+        ? friend.recipient
+        : friend.requester
+    );
+
+    const mutualFriends = await Friend.find({
+      $or: [
+        { requester: { $in: friendIds }, status: "accepted" },
+        { recipient: { $in: friendIds }, status: "accepted" },
+      ],
+      $and: [{ requester: { $ne: userId } }, { recipient: { $ne: userId } }],
+    });
+
+    const mutualFriendIds = mutualFriends.map((friend) =>
+      friend.requester.toString() === userId
+        ? friend.recipient
+        : friend.requester
+    );
+    const suggestedFriends = await User.find({
+      _id: { $in: mutualFriendIds, $nin: friendIds },
+    }).select("-password");
+
+    res.json(suggestedFriends);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 module.exports = {
   sendRequest,
   acceptRequest,
   rejectRequest,
   showAllFriends,
+  getMutualFriends,
 };
