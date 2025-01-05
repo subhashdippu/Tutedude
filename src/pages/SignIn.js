@@ -1,93 +1,86 @@
 import React, { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
-
+  const [errorMessage, setErrorMessage] = useState(null);
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    const { email, password } = data;
-  };
+  const onSubmit = async (data) => {
+    console.log("Form Data:", data);
+    const { username, password } = data;
 
-  const handleRegister = () => {
-    navigate("/");
+    try {
+      const response = await axios.post(
+        "http://localhost:4001/api/auth/login",
+        { username, password }
+      );
+      console.log("User logged in:", response.data);
+      localStorage.setItem("token", response.data.token);
+      navigate("/");
+    } catch (error) {
+      console.error("Error:", error);
+      setErrorMessage(error.response?.data?.message || "An error occurred.");
+    }
   };
 
   return (
     <div className="max-w-md bg-white shadow w-full mx-auto flex items-center justify-center my-20">
-      <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
-        <h3 className="font-bold text-lg">Please Login!</h3>
+      <div className="mb-5">
+        <form className="card-body" onSubmit={handleSubmit(onSubmit)}>
+          <h3 className="font-bold text-lg">Please Sign In!</h3>
 
-        {/* Email Input */}
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Email</span>
-          </label>
-          <input
-            type="email"
-            placeholder="email"
-            className="input input-bordered"
-            {...register("email", { required: true })}
-          />
-        </div>
-
-        {/* Password Input */}
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Password</span>
-          </label>
-          <input
-            type="password"
-            placeholder="password"
-            className="input input-bordered"
-            {...register("password", { required: true })}
-          />
-          <label className="label">
-            <a href="#" className="label-text-alt link link-hover mt-2">
-              Forgot password?
-            </a>
-          </label>
-        </div>
-
-        {/* Error Message */}
-        {errorMessage && (
-          <p className="text-red-500 text-xs italic">{errorMessage}</p>
-        )}
-
-        {/* Submit Button */}
-        <div className="form-control mt-4">
-          <input
-            type="submit"
-            className="btn bg-green text-white"
-            value="Login"
-          />
-        </div>
-
-        {/* Close Button */}
-        <Link to="/">
-          <div className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-            ✕
+          {/* Username Input */}
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Username</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Username"
+              className="input input-bordered"
+              {...register("username", { required: true })}
+            />
+            {errors.username && (
+              <p className="text-red-500">Username is required</p>
+            )}
           </div>
-        </Link>
 
-        {/* Signup Link */}
-        <p className="text-center my-2">
-          Don’t have an account?
-          <Link to="/signup" className="underline text-red ml-1">
-            Signup Now
-          </Link>
-        </p>
-      </form>
+          {/* Password Input */}
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Password</span>
+            </label>
+            <input
+              type="password"
+              placeholder="Password"
+              className="input input-bordered"
+              {...register("password", { required: true })}
+            />
+            {errors.password && (
+              <p className="text-red-500">Password is required</p>
+            )}
+          </div>
+
+          {/* Error Message */}
+          {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+
+          {/* Submit Button */}
+          <div className="form-control mt-6">
+            <input
+              type="submit"
+              className="btn bg-green text-white"
+              value="Sign In"
+            />
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

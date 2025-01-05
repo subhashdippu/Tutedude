@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaFacebookF, FaGithub, FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -14,9 +15,21 @@ const Signup = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("User signed up:", data);
-    navigate(from, { replace: true });
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:4001/api/auth/register",
+        data
+      );
+      console.log("User signed up:", response.data);
+      navigate(from, { replace: true });
+    } catch (error) {
+      if (error.response) {
+        console.error("Error signing up:", error.response.data);
+      } else {
+        console.error("Error signing up:", error.message);
+      }
+    }
   };
 
   const handleRegister = () => {
@@ -32,27 +45,19 @@ const Signup = () => {
 
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Name</span>
+              <span className="label-text">Username</span>
             </label>
             <input
               type="text"
-              placeholder="Your name"
+              placeholder="Your username"
               className="input input-bordered"
-              {...register("name", { required: true })}
+              {...register("username", { required: true })}
             />
-          </div>
-
-          {/* Email Input */}
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Email</span>
-            </label>
-            <input
-              type="email"
-              placeholder="Email"
-              className="input input-bordered"
-              {...register("email", { required: true })}
-            />
+            {errors.username && (
+              <p className="text-red-500 text-xs italic">
+                Username is required
+              </p>
+            )}
           </div>
 
           {/* Password Input */}
@@ -66,17 +71,17 @@ const Signup = () => {
               className="input input-bordered"
               {...register("password", { required: true })}
             />
+            {errors.password && (
+              <p className="text-red-500 text-xs italic">
+                Password is required
+              </p>
+            )}
             <label className="label">
               <a href="#" className="label-text-alt link link-hover mt-2">
                 Forgot password?
               </a>
             </label>
           </div>
-
-          {/* Error Message */}
-          {errors.message && (
-            <p className="text-red-500 text-xs italic">{errors.message}</p>
-          )}
 
           {/* Submit Button */}
           <div className="form-control mt-6">
