@@ -15,7 +15,7 @@ const UserProfile = () => {
     }
 
     axios
-      .get("http://localhost:4001/api/users/profile", {
+      .get("https://shiva-0jy7.onrender.com/api/users/profile", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
