@@ -6,10 +6,6 @@
 
 FriendFinder is a fully responsive web application designed to facilitates user interactions through friend management features. The application will allow users to register, log in, search for other users, send and manage friend requests, and receive friend recommendations based on mutual connections.
 
-## 🚀 View Live Demo
-
-<img src="https://img.shields.io/badge/website-up" />
-
 ## 👨‍💻 Tech Stack Used
 
 ### Frontend
@@ -97,7 +93,7 @@ npm run start
 
 ## 📸 Screenshots
 
-<img src='./my-app1/Frontend/src/Readme/Home.png'/>
-<img src='./my-app1/Frontend/src/Readme/Profile.png'/>
-<img src='./my-app1/Frontend/src/Readme/SignIn.png'/>
-<img src='./my-app1/Frontend/src/Readme/Friend.png'/>
+<img src='./Frontend/src/Readme/SignIn.png'/>
+<img src='./Frontend/src/Readme/Home.png'/>
+<img src='.//Frontend/src/Readme/Friend.png'/>
+<img src='./Frontend/src/Readme/Profile.png'/>
