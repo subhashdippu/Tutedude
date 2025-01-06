@@ -18,7 +18,7 @@ const Signup = () => {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        "http://localhost:4001/api/auth/register",
+        "https://shiva-0jy7.onrender.com/api/auth/register",
         data
       );
       console.log("User signed up:", response.data);
