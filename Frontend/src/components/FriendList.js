@@ -15,7 +15,7 @@ const AllFriends = () => {
     }
 
     axios
-      .get("http://localhost:4001/api/friends/all-friends", {
+      .get("https://shiva-0jy7.onrender.com/api/friends/all-friends", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
