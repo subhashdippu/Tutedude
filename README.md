@@ -4,7 +4,13 @@
 
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
-FriendFinder is a fully responsive web application designed to facilitates user interactions through friend management features. The application will allow users to register, log in, search for other users, send and manage friend requests, and receive friend recommendations based on mutual connections.
+FriendFinder is a responsive web application designed to simplify social interactions. It enables users to securely sign up, log in, search for others, send, accept, or reject friend requests, and receive recommendations based on mutual connections. With an intuitive interface and seamless functionality, FriendFinder fosters meaningful connections across all devices.
+
+## 🚀 View Live Demo
+
+<img src="https://img.shields.io/badge/website-up-greene" />
+
+<pre><center><a href="[https://food-app-client-three.vercel.app](https://tutedude-6kzz.vercel.app/)"><b>https://food-app-client-three.vercel.app</b></a></center></pre>
 
 ## 👨‍💻 Tech Stack Used
 
