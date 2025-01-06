@@ -14,7 +14,7 @@ const MutualFriends = () => {
       return;
     }
     axios
-      .get("http://localhost:4001/api/friends/mutual-friends", {
+      .get("https://shiva-0jy7.onrender.com/api/friends/mutual-friends", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
