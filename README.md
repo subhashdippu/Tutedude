@@ -10,7 +10,7 @@ FriendFinder is a responsive web application designed to simplify social interac
 
 <img src="https://img.shields.io/badge/website-up-greene" />
 
-<pre><center><a href="[https://tutedude-6kzz.vercel.app/](https://tutedude-6kzz.vercel.app/)"><b>https://food-app-client-three.vercel.app</b></a></center></pre>
+<pre><center><a href="[https://tutedude-6kzz.vercel.app/](https://tutedude-6kzz.vercel.app/)"><b>https://tutedude-6kzz.vercel.app</b></a></center></pre>
 
 ## 👨‍💻 Tech Stack Used
 
